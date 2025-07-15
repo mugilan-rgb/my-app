@@ -4,5 +4,11 @@
       "src": "client/next.config.ts",
       "use": "@vercel/next"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "client/$1"
+    }
   ]
 }
