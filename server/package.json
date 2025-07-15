@@ -20,16 +20,15 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^9.4.3",
-    "@nestjs/core": "^9.4.3",
-    "@nestjs/mongoose": "^11.0.3",
-    "@nestjs/platform-express": "^9.4.3",
-    "@nestjs/typeorm": "10.0.0",
-    "reflect-metadata": "^0.1.13",
+    "@nestjs/common": "^11.0.1",
+    "@nestjs/core": "^11.0.1",
+    "@nestjs/mongoose": "^9.2.2",
+    "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/typeorm": "^11.0.0",
+    "mongoose": "^6.13.8",
+    "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.17",
-    "express": "^4.18.2",
-    "mongoose": "^8.4.4"
+    "typeorm": "^0.3.25"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -78,8 +77,5 @@
   "main": "index.js",
   "directories": {
     "test": "test"
-  },
-  "engines": {
-    "node": "18.x"
   }
 }
