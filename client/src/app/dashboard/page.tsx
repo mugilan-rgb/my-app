@@ -2,12 +2,26 @@
 import { useEffect, useState } from "react";
 import { apiCall } from "../context/apiservice";
 
+type User = {
+    _id: string;
+    email: string;
+    password: string;
+};
+type ApiResponse = {
+    data: User[];
+};
+
 export default function Home() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<User[]>([]);
 
     const userData = async () => {
         try {
-            const response: any = await apiCall("user", "GET", null);
+            const sendParam = {
+
+            }
+            const response = await apiCall("user", "GET", sendParam) as ApiResponse;
+            setData(response.data);
+
             setData(response.data);
             console.log('Login response:', response);
         } catch (error) {
@@ -32,7 +46,7 @@ export default function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((val: any) => (
+                        {data.map((val: User) => (
                             <tr key={val._id} className="hover:bg-gray-50">
                                 <td className="border border-gray-400 p-4">{val.email}</td>
                                 <td className="border border-gray-400 p-4">{val.password}</td>

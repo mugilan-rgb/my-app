@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 // base url and header
 const api = axios.create({
@@ -8,10 +9,9 @@ const api = axios.create({
     },
 });
 
-// Interceptor Dynamic send req and res
+// Interceptor: dynamically send req
 api.interceptors.request.use(
-    (config: any) => {
-        // Inject values into the request body
+    (config: InternalAxiosRequestConfig) => {
         if (config.method !== "get" && config.method !== "GET") {
             config.data = {
                 ...config.data,
@@ -21,16 +21,14 @@ api.interceptors.request.use(
                 ...config.params,
             };
         }
-
         return config;
     },
     (error) => Promise.reject(error)
 );
 
-
-// Response Interceptor
+// Interceptor: response handler
 api.interceptors.response.use(
-    (response: any) => response.data,
+    (response: AxiosResponse) => response.data,
     (error) => {
         console.error("API Error:", error);
         return Promise.reject(error);

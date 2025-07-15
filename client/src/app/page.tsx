@@ -44,7 +44,7 @@ export default function Home() {
           required
         />
         <button type="submit">Login</button>
-        <p>Don't have an account? <a href="#">Register</a></p>
+        <p>Don&apos;t have an account? <a href="#">Register</a></p>
       </form>
     </div>
   );
