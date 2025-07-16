@@ -13,7 +13,7 @@ import { UserSchema } from './models/user-data';
     {name:'User',schema:UserSchema}
    ])
   ],
-  controllers: [AppController,UserController],
+  controllers: [UserController],
   providers: [AppService],
 })
 export class AppModule { }
