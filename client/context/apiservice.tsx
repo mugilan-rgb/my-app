@@ -1,4 +1,4 @@
-import api from "../../app/context/apinterceptor";
+import api from "./apinterceptor";
 
 export const apiCall = async (
   url: string,

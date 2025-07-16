@@ -1,10 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import './globals.css';
-import { apiCall } from './context/apiservice';
 import { useRouter } from 'next/navigation';
+import { apiCall } from '@/context/apiservice';
 
-export default function Home() {
+export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();

@@ -1,6 +1,6 @@
 'use client';
+import { apiCall } from "@/context/apiservice";
 import { useEffect, useState } from "react";
-import { apiCall } from "../context/apiservice";
 
 type User = {
     _id: string;
@@ -11,7 +11,7 @@ type ApiResponse = {
     data: User[];
 };
 
-export default function Home() {
+export default function Dashboard() {
     const [data, setData] = useState<User[]>([]);
 
     const userData = async () => {
