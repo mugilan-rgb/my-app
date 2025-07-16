@@ -1,7 +1,5 @@
 {
-  "build": {
-    "outputDirectory": "dist"
-  },
+  "outputDirectory": "dist",  
   "functions": {
     "dist/main.js": {
       "memory": 1024,
@@ -13,5 +11,7 @@
       "src": "/(.*)",
       "dest": "/dist/main.js"
     }
-  ]
+  ],
+  "installCommand": "npm install",
+  "buildCommand": "npm run build"
 }
