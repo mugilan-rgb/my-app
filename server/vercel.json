@@ -1,7 +1,7 @@
 {
-  "outputDirectory": "dist",  
+  "outputDirectory": "dist",
   "functions": {
-    "dist/main.js": {
+    "dist/api/main.js": {
       "memory": 1024,
       "maxDuration": 10
     }
@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/main.js"
+      "dest": "/dist/api/main.js" 
     }
   ],
   "installCommand": "npm install",
