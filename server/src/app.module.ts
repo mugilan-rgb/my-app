@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { UserSchema } from './models/user-data';
@@ -18,6 +16,6 @@ import { JWTService } from './controller/auth/jwt.service';
    ]),HttpModule
   ],
   controllers: [AuthController],
-  providers: [AppService,JWTService],
+  providers: [JWTService],
 })
 export class AppModule { }
