@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
@@ -7,12 +7,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Repository } from 'typeorm';
 import { Login_Data, LoginDocument } from 'src/models/login-data-entity';
 import { Model } from 'mongoose';
+import { UserDocument } from 'src/models/user-data';
 
 @Controller('auth')
 export class AuthController {
     constructor(private readonly httpService: HttpService, private readonly JWTService: JWTService,
         @InjectModel('Login_Data') private readonly loginModel: Model<LoginDocument>,
-
+        @InjectModel('User') private readonly userModel: Model<UserDocument>,
+        @InjectModel('Login_Data') private readonly Logindata: Model<LoginDocument>,
     ) { }
 
     @Post('ip')
@@ -76,7 +78,7 @@ export class AuthController {
                 return res.status(400).json('Missing email or password');
             }
 
-           const user = await this.loginModel.findOne({ email, delstatus: 0, activestatus: 1 })
+            const user = await this.loginModel.findOne({ email, delstatus: 0, activestatus: 1 })
             if (!user) {
                 return res.status(400).json('Invalid email or user not found');
             }
@@ -93,6 +95,40 @@ export class AuthController {
             return res.status(500).json(err);
         }
     }
+    @Post('create')
+    async create(@Req() req: Request, @Res() res: any, @Body() body: any) {
+        try {
+            const { email, password, devicetype, deviceid } = body;
 
+            if (!email || !password || !deviceid || !devicetype) {
+                return res.status(400).json({ error: 'Missing required fields' });
+            }
+
+            const newUser = new this.Logindata({ email, password });
+            const savedUser = await newUser.save();
+
+            return res.status(200).json({
+                data: savedUser,
+                message: 'User created successfully',
+            });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    }
+
+    @Get()
+    async findAll(@Res() res: any) {
+        try {
+            const users = await this.Logindata.find().exec();
+            return res.status(200).json({
+                data: users,
+                message: 'Users fetched successfully',
+            });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    }
 
 }

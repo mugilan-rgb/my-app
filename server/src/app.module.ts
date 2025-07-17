@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
-import { UserController } from './controller/user/user.controller';
 import { UserSchema } from './models/user-data';
 import { AuthController } from './controller/auth/auth.controller';
 import { HttpModule } from '@nestjs/axios';
@@ -18,7 +17,7 @@ import { JWTService } from './controller/auth/jwt.service';
     { name: 'Login_Data', schema: LoginSchema}
    ]),HttpModule
   ],
-  controllers: [UserController,AuthController],
+  controllers: [AuthController],
   providers: [AppService,JWTService],
 })
 export class AppModule { }
